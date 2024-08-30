@@ -16,7 +16,6 @@ getNumbers().then(numbers => {
     }, 1000);
   });
 })
-
 // Step 3: Chain another promise to multiply even numbers by 2
 .then(evenNumbers => {
   return new Promise((resolve, reject) => {
@@ -26,9 +25,15 @@ getNumbers().then(numbers => {
     }, 2000);
   });
 })
-
 // Step 4: Update the HTML element with the final array
 .then(doubledNumbers => {
   let outputElement = document.getElementById('output');
-  outputElement.innerText = doubledNumbers.join(', ');
+  if(outputElement) {
+    outputElement.innerText = doubledNumbers.join(', ');
+  } else {
+    console.log('Element with id "output" not found');
+  }
+})
+.catch(error => {
+  console.log('Error:', error);
 });
